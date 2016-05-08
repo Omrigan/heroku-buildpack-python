@@ -97,6 +97,19 @@ if [[ ! "$DOCKER_BUILD" ]]; then
 fi
 
 
+title "Generating environment"
+if [ ! -f $CACHE_DIR/env.tar.gz ]; then
+	subtitle "Fetching..."
+	curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
+fi
+subtitle "Unpacking..."
+tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
+
+#Copy-pasted envs
+
+export ATLAS="\$HOME/.heroku/vendor/lib/atlas-base/libatlas.a"
+export BLAS="\$HOME/.heroku/vendor/lib/atlas-base/atlas/libblas.a"
+export LAPACK="\$HOME/.heroku/vendor/lib/atlas-base/atlas/liblapack.a"
 
 
 
@@ -226,20 +239,6 @@ set-env LD_LIBRARY_PATH '/app/.heroku/vendor/lib:/app/.heroku/python/lib:$LD_LIB
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 set-default-env PYTHONPATH /app/
-echo "Generating environment"
-if [ ! -f $CACHE_DIR/env.tar.gz ]; then
-	echo "Fetching..."
-	curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
-fi
-echo "Unpacking..."
-tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
-
-export ATLAS="\$HOME/.heroku/vendor/lib/atlas-base/libatlas.a"
-export BLAS="\$HOME/.heroku/vendor/lib/atlas-base/atlas/libblas.a"
-export LAPACK="\$HOME/.heroku/vendor/lib/atlas-base/atlas/liblapack.a"
-
-export PYTHONPATH="$BUILD_DIR/.heroku/python/lib/python2.7/site-packages/:$BUILD_DIR/.heroku/vendor/lib/python2.7/site-packages/"
-
 
 # Install sane-default script for $WEB_CONCURRENCY and $FORWARDED_ALLOW_IPS.
 cp $ROOT_DIR/vendor/python.gunicorn.sh $GUNICORN_PROFILE_PATH
