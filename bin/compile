@@ -242,9 +242,9 @@ echo "Unpacking..."
 tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
 
 
-set-env BLAS /app/.heroku/vendor/lib/atlas-base/atlas/libblas.a
-set-env LAPACK /app/.heroku/vendor/lib/atlas-base/atlas/liblapack.a
-set-env ATLAS /app/.heroku/vendor/lib/atlas-base/libatlas.a
+#set-env BLAS /app/.heroku/vendor/lib/atlas-base/atlas/libblas.a
+#set-env LAPACK /app/.heroku/vendor/lib/atlas-base/atlas/liblapack.a
+#set-env ATLAS /app/.heroku/vendor/lib/atlas-base/libatlas.a
 #set-env LIBRARY_PATH $LIBRARY_PATH:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/atlas-base/atlas
 #set-env LD_LIBRARY_PATH $LD_LIBRARY_PATH:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/atlas-base/atlas
 
