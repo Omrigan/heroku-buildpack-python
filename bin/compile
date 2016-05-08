@@ -97,12 +97,12 @@ if [[ ! "$DOCKER_BUILD" ]]; then
 fi
 
 
-title "Generating environment"
+echo "Generating environment"
 if [ ! -f $CACHE_DIR/env.tar.gz ]; then
-	subtitle "Fetching..."
+	echo "Fetching..."
 	curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
 fi
-subtitle "Unpacking..."
+echo "Unpacking..."
 tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
 
 #Copy-pasted envs
