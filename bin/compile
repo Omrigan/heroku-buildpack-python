@@ -97,6 +97,22 @@ if [[ ! "$DOCKER_BUILD" ]]; then
 fi
 
 
+title "Generating environment"
+if [ ! -f $CACHE_DIR/env.tar.gz ]; then
+	subtitle "Fetching..."
+	curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
+fi
+subtitle "Unpacking..."
+tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
+
+#Copy-pasted envs
+
+export ATLAS="\$HOME/.heroku/vendor/lib/atlas-base/libatlas.a"
+export BLAS="\$HOME/.heroku/vendor/lib/atlas-base/atlas/libblas.a"
+export LAPACK="\$HOME/.heroku/vendor/lib/atlas-base/atlas/liblapack.a"
+
+
+
 # Set new context.
 ORIG_BUILD_DIR=$BUILD_DIR
 BUILD_DIR=$APP_DIR
