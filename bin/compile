@@ -243,6 +243,7 @@ tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
 export ATLAS="\$HOME/.heroku/vendor/lib/atlas-base/libatlas.a"
 export BLAS="\$HOME/.heroku/vendor/lib/atlas-base/atlas/libblas.a"
 export LAPACK="\$HOME/.heroku/vendor/lib/atlas-base/atlas/liblapack.a"
+export LD_LIBRARY_PATH="$BUILD_DIR/.heroku/python/lib/:$BUILD_DIR/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib/atlas-base:$BUILD_DIR/.heroku/vendor/lib/atlas-base/atlas"
 export PYTHONPATH="$BUILD_DIR/.heroku/python/lib/python2.7/site-packages/:$BUILD_DIR/.heroku/vendor/lib/python2.7/site-packages/"
 
 
